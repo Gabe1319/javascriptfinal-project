@@ -23,21 +23,43 @@
   <section id="landing-page">
     <header>
       <div class="header__container">
-        <div class="="header__description">
+        <div class="header__description">
         <h1>Your #1 Source for trivia questions </h1>
         <div class="header__email">
-      <input type="text"
-      placeholder="search by category">
+      <input class="header__email--input" type="text"
+      placeholder="Search by category">
     <button class="header__email--btn">Enter</button></div></div>
       </div>
     </header>
   </section>
+  <main id="trivia__main"></main>
   <section>
-    <main>
+    <div class="container">
+      <div class="row">
+        <div class="triva__header">
+          <h2>All questions</h2>
+          <select id="filter">
+            <option value="" disabled selected>Sort</option>
+            <option value="EASY">EASY</option>
+            <option value="MEDUIM">MEDUIM</option>
+            <option value="HARD">HARD</option>
+            <option value="ALL">ALL</option>
+          </select>
+          <div class="card">
+          <h1>          </h1>
+          <div class="question">What year is is</div>
+          <div class="options">2026,2027,2025,2024</div>
+          <button>Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
 
-    </main>
+    
   </section>
+  </main>
   <Section>
     <Footer>
 
