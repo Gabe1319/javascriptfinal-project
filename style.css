@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+nav{
+  height: 80px;
+  display: flex;
+}
+
+ul{
+  display: flex;
+}
+
+li {list-style: none;}
+
+a {display: inline;
+text-decoration: none;}
+/* nav bar */
+.nav__container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 24px;
+  display: flex;  
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.nav__title {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding-bottom: 4px;
+}
