@@ -140,8 +140,9 @@ section {
 }
 
 .trivia__header {
-  display: flex;
-  flex-direction: column;
+  display: wrap;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -178,9 +179,6 @@ justify-content: center;
 }
 
 .trivia__btn {
-  display: flex;
- padding: 10px 20px;
- 
-  
-  
+  width: 45%;
+  padding: 10px 20px;
 }
