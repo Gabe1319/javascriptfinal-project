@@ -39,10 +39,13 @@ p {
   font-size: 16px;
   line-height: 1.5;
 }
-button{cursor: pointer;}
+button{cursor: pointer;
+}
 .logo {
   width: 160px;
 }
+
+img {width: 100%;}
 /* nav bar */
 
 #landing page {
@@ -140,7 +143,7 @@ section {
 }
 
 .trivia__header {
-  display: wrap;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -181,4 +184,35 @@ justify-content: center;
 .trivia__btn {
   width: 45%;
   padding: 10px 20px;
+}
+
+/* footer */
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.footer__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.footer__logo-img {
+  width: 160px;
+  
+}
+
+.footer__link{
+  margin: 0 15px;
+}
+
+.footer__copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
