@@ -2,17 +2,28 @@
 
 const questionListEl = document.querySelector(".question-list");
 
-async function trivia(allQuestions = questionsData.results) {
+let allQuestions = [];
+
+const searchInput = document.querySelector(".header__email--input");
+const searchButton = document.querySelector(".header__email--btn");
+
+searchButton.addEventListener("click", () => {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+  console.log(searchTerm);
+});
+
+async function trivia() {
   const question = await fetch(
     "https://opentdb.com/api.php?amount=50&type=multiple",
   );
   const questionData = await question.json();
-  console.log(questionData.results);
+  allQuestions = questionData.results;
+
   const questions = questionData.results.map(createQuestionCard).join("");
   questionListEl.innerHTML = questions;
 }
-let allQuestions = []
-trivia(allQuestions = questionsData.results);
+
+
 
 const createQuestionCard = (question) => `<div class="card">
             <div class="question">${question.question}
@@ -24,3 +35,5 @@ const createQuestionCard = (question) => `<div class="card">
   <button class="trivia__btn">${question.incorrect_answers[2]}</button>
 </div></div>
 `;
+
+trivia();
