@@ -169,8 +169,8 @@ section {
 
 .question-list {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
   font-style: bold;
   font-size: large;
   color: black;
@@ -186,7 +186,12 @@ section {
   justify-content: center;
    
 }
+.question {
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: bold;
 
+}
 .trivia__btn {
   width: 45%;
   padding: 10px 20px;

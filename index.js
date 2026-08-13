@@ -1,15 +1,20 @@
 // https://opentdb.com/api.php?amount=50&type=multiple
 
-async function trivia() {
+const questionListEl = document.querySelector(".question-list");
+
+async function trivia(allQuestions = questionsData.results) {
   const question = await fetch(
     "https://opentdb.com/api.php?amount=50&type=multiple",
   );
   const questionData = await question.json();
-  const questionListEl = document.querySelector(".question-list");
   console.log(questionData.results);
-  const questions = questionData.results
-    .map(
-      (question) => `<div class="card">
+  const questions = questionData.results.map(createQuestionCard).join("");
+  questionListEl.innerHTML = questions;
+}
+let allQuestions = []
+trivia(allQuestions = questionsData.results);
+
+const createQuestionCard = (question) => `<div class="card">
             <div class="question">${question.question}
           </div>
           <div class="options">
@@ -17,11 +22,5 @@ async function trivia() {
   <button class="trivia__btn">${question.incorrect_answers[0]}</button>
   <button class="trivia__btn">${question.incorrect_answers[1]}</button>
   <button class="trivia__btn">${question.incorrect_answers[2]}</button>
-</div>
-`,
-    )
-    .join("");
-  questionListEl.innerHTML = questions;
-}
-
-trivia();
+</div></div>
+`;
