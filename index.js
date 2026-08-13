@@ -12,15 +12,28 @@ function renderQuestions(questions) {
   questionListEl.innerHTML = html;
 }
 
-searchButton.addEventListener("click", () => {
+function applyFilters() {
   const searchTerm = searchInput.value.trim().toLowerCase();
-  const filteredQuestions = allQuestions.filter(
-    (q) =>
-      q.question.toLowerCase().includes(searchTerm) ||
-      q.category.toLowerCase().includes(searchTerm),
-  );
+  const difficulty = filterSelect.value.toLowerCase();
+
+  const filteredQuestions = allQuestions.filter((question) => {
+    const matchesSearch =
+      question.question.toLowerCase().includes(searchTerm) ||
+      question.category.toLowerCase().includes(searchTerm);
+
+    const matchesDifficulty =
+      !difficulty ||
+      difficulty === "all" ||
+      question.difficulty.toLowerCase() === difficulty;
+
+    return matchesSearch && matchesDifficulty;
+  });
+
+  searchButton.addEventListener("click", applyFilters);
+filterSelect.addEventListener("change", applyFilters);
+
   renderQuestions(filteredQuestions);
-});
+}
 
 async function trivia() {
   const response = await fetch(
@@ -32,20 +45,8 @@ async function trivia() {
   renderQuestions(allQuestions);
 }
 
-filterSelect.addEventListener("change", (e) => {
-  const selectedDifficulty = e.target.value.toLowerCase();
 
-  if (selectedDifficulty === "all") {
-    renderQuestions(allQuestions);
-    return;
-  }
 
-  const filtered = allQuestions.filter(
-    (q) => q.difficulty.toLowerCase() === selectedDifficulty
-  );
-
-  renderQuestions(filtered);
-});
 
 const createQuestionCard = (question) => `<div class="card">
             <div class="question">${question.question}
