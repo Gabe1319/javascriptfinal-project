@@ -29,11 +29,14 @@ function applyFilters() {
     return matchesSearch && matchesDifficulty;
   });
 
-  searchButton.addEventListener("click", applyFilters);
-filterSelect.addEventListener("change", applyFilters);
+  
 
   renderQuestions(filteredQuestions);
 }
+
+searchButton.addEventListener("click", applyFilters);
+filterSelect.addEventListener("change", applyFilters);
+
 
 async function trivia() {
   const response = await fetch(
