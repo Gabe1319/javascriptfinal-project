@@ -9,7 +9,7 @@ const searchButton = document.querySelector(".header__email--btn");
 
 searchButton.addEventListener("click", () => {
   const searchTerm = searchInput.value.trim().toLowerCase();
-  console.log(searchTerm);
+  allQuestions.filter((q) => q.question.toLowerCase().includes(searchTerm));
 });
 
 async function trivia() {
@@ -22,8 +22,6 @@ async function trivia() {
   const questions = questionData.results.map(createQuestionCard).join("");
   questionListEl.innerHTML = questions;
 }
-
-
 
 const createQuestionCard = (question) => `<div class="card">
             <div class="question">${question.question}
