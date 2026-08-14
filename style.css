@@ -249,5 +249,13 @@ section {
 
   .card {
     width: 50%;
+    
+    align-items: center;
+  }
+
+  .trivia__btn {
+    width: calc(100%-45%);
+    padding: 10px 20px;
+    font-size: 10px;
   }
 }
