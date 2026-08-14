@@ -4,6 +4,8 @@ const questionListEl = document.querySelector(".question-list");
 const searchInput = document.querySelector(".header__email--input");
 const searchButton = document.querySelector(".header__email--btn");
 const filterSelect = document.querySelector("#filter");
+const buttons = document.querySelectorAll("trivia__btn")
+const feedback = document.getElementById('feedback')
 ;
 
 let allQuestions = [];
@@ -37,12 +39,7 @@ searchButton.addEventListener("click", applyFilters);
 filterSelect.addEventListener("change", applyFilters);
 
 function shuffle(array) {
-  const answers = [
-question.correct_answer,
-question.incorrect_answers[0],
-question.incorrect_answers[1],
-question.incorrect_answers[2],
-]
+  
 const shuffledAnswers = shuffle(answers);
   return array;
   for (let i = array.length - 1; i > 0; i--) {
@@ -72,5 +69,10 @@ const createQuestionCard = (question) => `<div class="card">
   <button class="trivia__btn">${question.incorrect_answers[2]}</button>
 </div></div>
 `;
-
+const answers = [
+question.correct_answer,
+question.incorrect_answers[0],
+question.incorrect_answers[1],
+question.incorrect_answers[2],
+]
 trivia();
