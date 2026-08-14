@@ -4,6 +4,7 @@ const questionListEl = document.querySelector(".question-list");
 const searchInput = document.querySelector(".header__email--input");
 const searchButton = document.querySelector(".header__email--btn");
 const filterSelect = document.querySelector("#filter");
+;
 
 let allQuestions = [];
 
@@ -29,34 +30,37 @@ function applyFilters() {
     return matchesSearch && matchesDifficulty;
   });
 
-  
-
   renderQuestions(filteredQuestions);
 }
 
 searchButton.addEventListener("click", applyFilters);
 filterSelect.addEventListener("change", applyFilters);
 
-function shuffle() {
-  for (let i = 0; i < allQuestions.length; i++) {
-    const question = Math.floor(Math.random() * (i+1))
+function shuffle(array) {
+  const answers = [
+question.correct_answer,
+question.incorrect_answers[0],
+question.incorrect_answers[1],
+question.incorrect_answers[2],
+]
+const shuffledAnswers = shuffle(answers);
+  return array;
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
-  return shuffle
+  
 }
-
 
 async function trivia() {
   const response = await fetch(
-    "https://opentdb.com/api.php?amount=50&type=multiple"
+    "https://opentdb.com/api.php?amount=50&type=multiple",
   );
   const questionData = await response.json();
   allQuestions = questionData.results;
 
   renderQuestions(allQuestions);
 }
-
-
-
 
 const createQuestionCard = (question) => `<div class="card">
             <div class="question">${question.question}
