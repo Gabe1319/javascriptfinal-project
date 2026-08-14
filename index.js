@@ -37,6 +37,13 @@ function applyFilters() {
 searchButton.addEventListener("click", applyFilters);
 filterSelect.addEventListener("change", applyFilters);
 
+function shuffle() {
+  for (let i = 0; i < allQuestions.length; i++) {
+    const question = Math.floor(Math.random() * (i+1))
+  }
+  return shuffle
+}
+
 
 async function trivia() {
   const response = await fetch(
