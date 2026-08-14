@@ -34,12 +34,16 @@ function applyFilters() {
 searchButton.addEventListener("click", applyFilters);
 filterSelect.addEventListener("change", applyFilters);
 
-function shuffle(array) {
-  return array;
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+function shuffle(array) {for (let i = array.length - 1; i > 0; i--) {
+
+const j = Math.floor(Math.random() * (i + 1));
+
     [array[i], array[j]] = [array[j], array[i]];
+
   }
+
+return array;
+
 }
 
 async function trivia() {
@@ -52,28 +56,44 @@ async function trivia() {
   renderQuestions(allQuestions);
 }
 
-const createQuestionCard = (question) => {
-  const answers = [
-    question.correct_answer,
-    question.incorrect_answers[0],
-    question.incorrect_answers[1],
-    question.incorrect_answers[2],
+const createQuestionCard = (question) => {const answers = [
+
+question.correct_answer,
+
+question.incorrect_answers[0],
+
+question.incorrect_answers[1],
+
+question.incorrect_answers[2],
+
   ];
 
-  const shuffledAnswers = shuffle(answers);
+const shuffledAnswers = shuffle(answers);
 
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-  <div class="question">${question.question}</div>
-  <div class="options">
-    <button class="trivia__btn">${shuffledAnswers[0]}</button>
-    <button class="trivia__btn">${shuffledAnswers[1]}</button>
-    <button class="trivia__btn">${shuffledAnswers[2]}</button>
-    <button class="trivia__btn">${shuffledAnswers[3]}</button>
-  </div>
-  <div class="feedback"></div>
+return `
+
+    <div class="card">
+
+      <div class="question">${question.question}</div>
+
+      <div class="options">
+
+        <button class="trivia__btn">${shuffledAnswers[0]}</button>
+
+        <button class="trivia__btn">${shuffledAnswers[1]}</button>
+
+        <button class="trivia__btn">${shuffledAnswers[2]}</button>
+
+        <button class="trivia__btn">${shuffledAnswers[3]}</button>
+
+      </div>
+
+    </div>
+
   `;
+
+};
+
   const buttons = card.querySelectorAll(".trivia__btn");
   const feedback = card.querySelector(".feedback");
 
