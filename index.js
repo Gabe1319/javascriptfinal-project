@@ -34,16 +34,14 @@ function applyFilters() {
 searchButton.addEventListener("click", applyFilters);
 filterSelect.addEventListener("change", applyFilters);
 
-function shuffle(array) {for (let i = array.length - 1; i > 0; i--) {
-
-const j = Math.floor(Math.random() * (i + 1));
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
 
     [array[i], array[j]] = [array[j], array[i]];
-
   }
 
-return array;
-
+  return array;
 }
 
 async function trivia() {
@@ -56,21 +54,20 @@ async function trivia() {
   renderQuestions(allQuestions);
 }
 
-const createQuestionCard = (question) => {const answers = [
+const createQuestionCard = (question) => {
+  const answers = [
+    question.correct_answer,
 
-question.correct_answer,
+    question.incorrect_answers[0],
 
-question.incorrect_answers[0],
+    question.incorrect_answers[1],
 
-question.incorrect_answers[1],
-
-question.incorrect_answers[2],
-
+    question.incorrect_answers[2],
   ];
 
-const shuffledAnswers = shuffle(answers);
+  const shuffledAnswers = shuffle(answers);
 
-return `
+  return `
 
     <div class="card">
 
@@ -78,37 +75,45 @@ return `
 
       <div class="options">
 
-        <button class="trivia__btn">${shuffledAnswers[0]}</button>
+        <button class="trivia__btn ${
+          shuffledAnswers[0] === question.correct_answer ? "correct" : ""}
+        ">${shuffledAnswers[0]}</button>
 
-        <button class="trivia__btn">${shuffledAnswers[1]}</button>
+        <button class="trivia__btn ${
+          shuffledAnswers[1] === question.correct_answer ? "correct" : ""}
+        ">${shuffledAnswers[1]}</button>
 
-        <button class="trivia__btn">${shuffledAnswers[2]}</button>
+        <button class="trivia__btn ${
+          shuffledAnswers[2] === question.correct_answer ? "correct" : ""}
+        ">${shuffledAnswers[2]}</button>
 
-        <button class="trivia__btn">${shuffledAnswers[3]}</button>
+        <button class="trivia__btn ${
+          shuffledAnswers[3] === question.correct_answer ? "correct" : ""}
+        ">${shuffledAnswers[3]}</button>
 
       </div>
 
     </div>
 
   `;
-
 };
 
-  const buttons = card.querySelectorAll(".trivia__btn");
-  const feedback = card.querySelector(".feedback");
+const quizContainer = document.querySelector(".container");
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (button.textContent === question.correct_answer) {
-        feedback.textContent = "Correct! 🎉";
-      } else {
-        feedback.textContent = "Wrong answer ❌";
-      }
-    });
-  });
+quizContainer.addEventListener("click", (event) => {
+  if (!event.target.classList.contains("trivia__btn")) return;
 
-  return card;
-}
+  const button = event.target;
+
+  //if (button.dataset.correct === "true") {
+   if (button.classList.contains("correct")) {
+    button.textContent = "Correct! 🎉";
+  } else {
+    button.textContent = "Wrong ❌"; 
+  }
+
+  button.forEach(btn => btn.disabled = true);
+});
 
 //
 //   return `<div class="card">
