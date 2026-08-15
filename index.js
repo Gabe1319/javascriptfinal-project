@@ -101,18 +101,32 @@ const createQuestionCard = (question) => {
 const quizContainer = document.querySelector(".container");
 
 quizContainer.addEventListener("click", (event) => {
-  if (!event.target.classList.contains("trivia__btn")) return;
+  const button = event.target.closest(".trivia__btn");
 
-  const button = event.target;
+  if (!button) return;
 
-  //if (button.dataset.correct === "true") {
-   if (button.classList.contains("correct")) {
-    button.textContent = "Correct! 🎉";
+  const card = button.closest(".card");
+
+  if (!card || card.dataset.answered === "true") return;
+
+  const buttons = card.querySelectorAll(".trivia__btn");
+  const correctButton = card.querySelector(".trivia__btn.correct");
+
+  buttons.forEach((btn) => {
+    btn.disabled = true;
+  });
+
+  if (button.classList.contains("correct")) {
+    button.textContent = button.textContent + ", Correct! 🎉";
   } else {
-    button.textContent = "Wrong ❌"; 
+    button.textContent = button.textContent + ", Wrong ❌";
+
+    if (correctButton) {
+      correctButton.textContent = correctButton.textContent + ", Correct! 🎉";
+    }
   }
 
-  button.forEach(btn => btn.disabled = true);
+  card.dataset.answered = "true";
 });
 
 //
